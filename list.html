@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        .main{
+            width: 400px;
+            margin: auto;
+            box-shadow: 0 0 10px rgb(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        #userInfo{
+            width: 70%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid black;
+        }
+        #taskbtn{
+            padding: 8px ;
+            background-color: green;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+        }
+        #task_list li{
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid gray;
+            font-size: 20px;
+        }
+        #task_list li button{
+            padding: 2px 8px;
+            background-color: red;
+            border: none;
+            border-radius: 4px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <input type="text" id="userInfo" name="">
+        <button id="taskbtn">Add Task</button>
+        <ul id="task_list">
+            <!-- <li>
+                <input type="checkbox">
+                Task1
+                <button>Delete</button>
+            </li> -->
+        </ul>
+    </div>
+</body>
+<script>
+    const userInfo = document.querySelector('#userInfo');
+    const taskbtn = document.querySelector('#taskbtn');
+    const task_list = document.querySelector('#task_list');
+
+    taskbtn.addEventListener('click' ,()=>{
+        const task = userInfo.value;
+        if(task !== '')
+        {
+            const newLi = `<li>
+                        <input type='checkbox'/>
+                        ${task}
+                        <button class='deleteBtn'>Delete</button>
+                        </li>`
+            task_list.innerHTML += newLi;            
+        }
+        else
+        {
+            alert('Pleser fill input!');
+        };
+
+        const deleteBtns = document.querySelectorAll('.deleteBtn');
+        deleteBtns.forEach(btn =>{
+            btn.addEventListener('click' ,()=>{
+                btn.parentNode.remove();
+            })
+        })
+    })
+</script>
+</html>
